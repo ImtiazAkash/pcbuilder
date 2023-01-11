@@ -3,12 +3,25 @@ import Classes from "../styles/EachComponent.module.css";
 import { Button, Collapse } from "react-bootstrap";
 import Processor from "./Processor";
 import { useState } from "react";
+import { useEffect } from "react";
 
-function ChooseProcessor({ logo, setProcessorType }) {
+function ChooseProcessor({
+  logo,
+  setProcessorType,
+  setTotalCost,
+  totalCost,
+}) {
   const [open, setOpen] = useState(false);
   const [allow, setAllow] = useState(false);
   const [productName, setProductName] = useState();
   const [productPrice, setProductPrice] = useState();
+
+  console.log(typeof productPrice);
+  console.log(typeof totalCost);
+  useEffect(() => {
+    productPrice && setTotalCost(totalCost + productPrice);
+  }, [productPrice]);
+
   return (
     <div className={Classes.chooseComponent}>
       <div className={Classes.innerComponentBox}>

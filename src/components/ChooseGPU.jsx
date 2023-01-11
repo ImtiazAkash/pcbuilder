@@ -2,13 +2,18 @@ import React from "react";
 import Classes from "../styles/EachComponent.module.css";
 import { Button, Collapse } from "react-bootstrap";
 import GPU from "./GPU";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function ChooseGPU({ logo }) {
+function ChooseGPU({ logo, setTotalCost, totalCost }) {
   const [open, setOpen] = useState(false);
   const [allow, setAllow] = useState(false);
   const [productName, setProductName] = useState();
   const [productPrice, setProductPrice] = useState();
+
+   useEffect(() => {
+     productPrice && setTotalCost(totalCost + productPrice);
+   }, [productPrice]);
+
   return (
     <div className={Classes.chooseComponent}>
       <div className={Classes.innerComponentBox}>

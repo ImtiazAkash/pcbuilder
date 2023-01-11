@@ -7,3 +7,10 @@
     border-radius: 5px;
 }
 
+.showCost {
+    margin: 0 25px 0 auto;
+    padding: 5px;
+    color: white;
+    background-color: green;
+    border-radius: 5px;
+}

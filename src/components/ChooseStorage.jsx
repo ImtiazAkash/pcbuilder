@@ -2,13 +2,25 @@ import React from "react";
 import Classes from "../styles/EachComponent.module.css";
 import { Button, Collapse } from "react-bootstrap";
 import Storage from "./Storage";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function ChooseStorage({ logo, storageType, name, setFirstStorage, firstStorage }) {
+function ChooseStorage({
+  logo,
+  storageType,
+  name,
+  setFirstStorage,
+  firstStorage,
+  setTotalCost,
+  totalCost,
+}) {
   const [open, setOpen] = useState(false);
   const [allow, setAllow] = useState(false);
   const [productName, setProductName] = useState();
   const [productPrice, setProductPrice] = useState();
+
+   useEffect(() => {
+     productPrice && setTotalCost(totalCost + productPrice);
+   }, [productPrice]);
   return (
     <div className={Classes.chooseComponent}>
       <div className={Classes.innerComponentBox}>
@@ -20,7 +32,6 @@ function ChooseStorage({ logo, storageType, name, setFirstStorage, firstStorage 
             <span>{name}</span>
 
             {storageType === "SSD" && <span className="mark">Required</span>}
-          
           </div>
           <div className="product-name">
             <p>{productName}</p>

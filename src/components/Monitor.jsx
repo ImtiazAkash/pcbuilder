@@ -3,9 +3,9 @@ import { Button } from "react-bootstrap";
 import Classes from "../styles/Components.module.css";
 import { useState } from "react";
 import { useEffect } from "react";
-import { getProcessors } from "../services/processor";
+import { getMonitor } from "../services/monitor";
 
-function Processor({
+function Monitor({
   logo,
   setProductName,
   setProductPrice,
@@ -13,14 +13,13 @@ function Processor({
   open,
   setAllow,
   allow,
-  setProcessorType,
 }) {
-  const [outputProcessor, setOutputProcessor] = useState();
+  const [outputMonitor, setOutputMonitor] = useState();
 
   useEffect(() => {
-    getProcessors()
+    getMonitor()
       .then((res) => {
-        setOutputProcessor(res.data.processor);
+        setOutputMonitor(res.data.MONITOR);
       })
       .catch((error) => {
         console.log(error);
@@ -29,8 +28,8 @@ function Processor({
 
   return (
     <>
-      {outputProcessor ? (
-        outputProcessor.map((val, index) => {
+      {outputMonitor ? (
+        outputMonitor.map((val, index) => {
           return (
             <div className={Classes.container}>
               <div className={Classes.productContainer}>
@@ -44,10 +43,8 @@ function Processor({
                   </h4>
                   <div className={Classes.productDescription}>
                     <ul>
-                      <li>Cores : {val.Cores}</li>
-                      <li>Thread: {val.Threads}</li>
-                      <li>Generation: {val.Series} Series</li>
-                      <li>Video Ram: {val.VideoRam}</li>
+                      <li>Resolution : {val.Resolution}</li>
+                      <li>Refresh Rate: {val.DisplayInHz} Hz</li>
                     </ul>
                   </div>
                 </div>
@@ -62,7 +59,6 @@ function Processor({
                     onClick={() => {
                       setProductName(val.VendorName + " " + val.Model);
                       setProductPrice(val.Price);
-                      setProcessorType(val.VendorName);
                       setOpen(!open);
                       setAllow(!allow);
                     }}
@@ -81,4 +77,4 @@ function Processor({
   );
 }
 
-export default Processor;
+export default Monitor;

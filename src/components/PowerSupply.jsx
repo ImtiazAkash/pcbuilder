@@ -3,9 +3,9 @@ import { Button } from "react-bootstrap";
 import Classes from "../styles/Components.module.css";
 import { useState } from "react";
 import { useEffect } from "react";
-import { getProcessors } from "../services/processor";
+import { getPower } from "../services/powerSupply";
 
-function Processor({
+function PowerSupply({
   logo,
   setProductName,
   setProductPrice,
@@ -13,14 +13,13 @@ function Processor({
   open,
   setAllow,
   allow,
-  setProcessorType,
 }) {
-  const [outputProcessor, setOutputProcessor] = useState();
+  const [outputPowerSupply, setOutputPowerSupply] = useState();
 
   useEffect(() => {
-    getProcessors()
+    getPower()
       .then((res) => {
-        setOutputProcessor(res.data.processor);
+        setOutputPowerSupply(res.data.power_supply);
       })
       .catch((error) => {
         console.log(error);
@@ -29,8 +28,8 @@ function Processor({
 
   return (
     <>
-      {outputProcessor ? (
-        outputProcessor.map((val, index) => {
+      {outputPowerSupply ? (
+        outputPowerSupply.map((val, index) => {
           return (
             <div className={Classes.container}>
               <div className={Classes.productContainer}>
@@ -44,15 +43,12 @@ function Processor({
                   </h4>
                   <div className={Classes.productDescription}>
                     <ul>
-                      <li>Cores : {val.Cores}</li>
-                      <li>Thread: {val.Threads}</li>
-                      <li>Generation: {val.Series} Series</li>
-                      <li>Video Ram: {val.VideoRam}</li>
+                      <li>Capacity: {val.PowerInW} Watt</li>
                     </ul>
                   </div>
                 </div>
                 <div className={Classes.price}>
-                  <span className="mx-2">{val.Price}TK</span>
+                  <span className="mx-2">{val.Price} TK</span>
                 </div>
 
                 <div className={Classes.action}>
@@ -62,7 +58,6 @@ function Processor({
                     onClick={() => {
                       setProductName(val.VendorName + " " + val.Model);
                       setProductPrice(val.Price);
-                      setProcessorType(val.VendorName);
                       setOpen(!open);
                       setAllow(!allow);
                     }}
@@ -81,4 +76,4 @@ function Processor({
   );
 }
 
-export default Processor;
+export default PowerSupply;
