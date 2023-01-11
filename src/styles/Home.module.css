@@ -1,0 +1,12 @@
+.home {
+    height: 80vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main_buttons {
+    width: fit-content;
+    margin: 0 auto 0;
+}
