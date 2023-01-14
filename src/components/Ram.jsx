@@ -17,6 +17,13 @@ function Ram({
   ramType,
   setFirstRam,
   firstRam,
+  setReplace,
+  productPrice,
+  replace,
+  setTotalCost,
+  totalCost,
+  setTotalItem,
+  totalItem,
 }) {
   const [outputRam, setOutputRam] = useState();
 
@@ -67,12 +74,24 @@ function Ram({
                   <br />
                   <Button
                     onClick={() => {
+                      if (replace) {
+                        setTotalCost(totalCost - productPrice);
+                        setTotalItem(totalItem - 1);
+                        setProductName(val.VendorName + " " + val.Model);
+                        setProductPrice(val.Price);
+                        setOpen(!open);
+                        setAllow(!allow);
+                        setReplace(!replace);
+                        if(!firstRam) {
+                          setFirstRam(true);
+                        }
+                      }
                       setProductName(val.VendorName + " " + val.Model);
                       setProductPrice(val.Price);
                       setOpen(!open);
                       setAllow(!allow);
-                      if(!firstRam) {
-                        setFirstRam(true)
+                      if (!firstRam) {
+                        setFirstRam(true);
                       }
                     }}
                   >

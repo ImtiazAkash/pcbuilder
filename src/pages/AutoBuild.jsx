@@ -111,7 +111,7 @@ function AutoBuild() {
           style={{ display: "flex", flexDirection: "column" }}
           className={`${Classes.search_form} px-2`}
         >
-          <Table striped bordered hover id="mypc" name="hya">
+          <Table striped bordered hover id="mypc">
             <thead>
               <tr>
                 <th>Component</th>

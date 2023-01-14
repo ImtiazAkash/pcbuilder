@@ -11,14 +11,18 @@ function ChooseMotherboard({
   setRamType,
   setTotalCost,
   totalCost,
+  setTotalItem,
+  totalItem,
 }) {
   const [open, setOpen] = useState(false);
   const [allow, setAllow] = useState(false);
   const [productName, setProductName] = useState();
   const [productPrice, setProductPrice] = useState();
+  const [replace, setReplace] = useState(false);
 
   useEffect(() => {
     productPrice && setTotalCost(totalCost + productPrice);
+    productPrice && setTotalItem(totalItem + 1);
   }, [productPrice]);
   
   return (
@@ -40,17 +44,57 @@ function ChooseMotherboard({
           <p>{productPrice} TK</p>
         </div>
         <div className={Classes.action}>
-          <Button
-            onClick={(e) => {
-              e.stopPropagation();
-              setOpen(!open);
-              setAllow(!allow);
-            }}
-            aria-controls="choose"
-            aria-expanded={open}
-          >
-            Choose
-          </Button>
+          {!productName && (
+            <Button
+              onClick={(e) => {
+                e.stopPropagation();
+                setOpen(!open);
+                setAllow(!allow);
+              }}
+              aria-controls="choose"
+              aria-expanded={open}
+            >
+              Choose
+            </Button>
+          )}
+          {productName && (
+            <div>
+              <Button
+                style={{ backgroundColor: "white", border: "none" }}
+                id="cancel"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setProductName("");
+                  setProductPrice(0);
+                  setTotalCost(totalCost - productPrice);
+                  setTotalItem(totalItem - 1);
+                }}
+              >
+                {" "}
+                {"\u274C"}
+              </Button>
+              <Button
+                style={{
+                  fontSize: "28px",
+                  color: "black",
+                  backgroundColor: "white",
+                  border: "none",
+                }}
+                id="replace"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setOpen(!open);
+                  setAllow(!allow);
+                  setReplace(!replace);
+                }}
+                aria-controls="choose"
+                aria-expanded={open}
+              >
+                {" "}
+                {"\u27F3"}
+              </Button>
+            </div>
+          )}
         </div>
       </div>
       <Collapse in={open}>
@@ -66,6 +110,13 @@ function ChooseMotherboard({
               open={open}
               processorType={processorType}
               setRamType={setRamType}
+              setTotalCost={setTotalCost}
+              totalCost={totalCost}
+              setReplace={setReplace}
+              replace={replace}
+              setTotalItem={setTotalItem}
+              totalItem={totalItem}
+              productPrice={productPrice}
             />
           )}
         </div>

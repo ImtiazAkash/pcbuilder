@@ -14,6 +14,9 @@ function Processor({
   setAllow,
   allow,
   setProcessorType,
+  setReplace, productPrice,
+  replace, setTotalCost, totalCost,
+  setTotalItem, totalItem
 }) {
   const [outputProcessor, setOutputProcessor] = useState();
 
@@ -60,6 +63,16 @@ function Processor({
                   <br />
                   <Button
                     onClick={() => {
+                      console.log(replace);
+                      if(replace) {
+                        setTotalCost(totalCost - productPrice);
+                        setTotalItem(totalItem - 1);
+                        setProductName(val.VendorName + " "+ val.Model);
+                        setProductPrice(val.Price);
+                        setOpen(!open);
+                        setAllow(!allow);
+                        setReplace(!replace);
+                      }
                       setProductName(val.VendorName + " " + val.Model);
                       setProductPrice(val.Price);
                       setProcessorType(val.VendorName);

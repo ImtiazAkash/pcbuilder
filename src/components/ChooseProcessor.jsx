@@ -10,16 +10,18 @@ function ChooseProcessor({
   setProcessorType,
   setTotalCost,
   totalCost,
+  setTotalItem,
+  totalItem,
 }) {
   const [open, setOpen] = useState(false);
   const [allow, setAllow] = useState(false);
   const [productName, setProductName] = useState();
   const [productPrice, setProductPrice] = useState();
+  const [replace, setReplace] = useState(false);
 
-  console.log(typeof productPrice);
-  console.log(typeof totalCost);
   useEffect(() => {
     productPrice && setTotalCost(totalCost + productPrice);
+    productPrice && setTotalItem(totalItem + 1);
   }, [productPrice]);
 
   return (
@@ -41,17 +43,57 @@ function ChooseProcessor({
           <p>{productPrice} TK</p>
         </div>
         <div className={Classes.action}>
-          <Button
-            onClick={(e) => {
-              e.stopPropagation();
-              setOpen(!open);
-              setAllow(!allow);
-            }}
-            aria-controls="choose"
-            aria-expanded={open}
-          >
-            Choose
-          </Button>
+          {!productName && (
+            <Button
+              onClick={(e) => {
+                e.stopPropagation();
+                setOpen(!open);
+                setAllow(!allow);
+              }}
+              aria-controls="choose"
+              aria-expanded={open}
+            >
+              Choose
+            </Button>
+          )}
+          {productName && (
+            <div>
+              <Button
+                style={{ backgroundColor: "white", border: "none" }}
+                id="cancel"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setProductName("");
+                  setProductPrice(0);
+                  setTotalCost(totalCost - productPrice);
+                  setTotalItem(totalItem - 1);
+                }}
+              >
+                {" "}
+                {"\u274C"}
+              </Button>
+              <Button
+                style={{
+                  fontSize: "28px",
+                  color: "black",
+                  backgroundColor: "white",
+                  border: "none",
+                }}
+                id="replace"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setOpen(!open);
+                  setAllow(!allow);
+                  setReplace(!replace);
+                }}
+                aria-controls="choose"
+                aria-expanded={open}
+              >
+                {" "}
+                {"\u27F3"}
+              </Button>
+            </div>
+          )}
         </div>
       </div>
       <Collapse in={open}>
@@ -61,11 +103,18 @@ function ChooseProcessor({
               logo={logo}
               setProductName={setProductName}
               setProductPrice={setProductPrice}
+              productPrice={productPrice}
               setAllow={setAllow}
               allow={allow}
               setOpen={setOpen}
               open={open}
               setProcessorType={setProcessorType}
+              setReplace={setReplace}
+              replace={replace}
+              setTotalCost={setTotalCost}
+              totalCost={totalCost}
+              setTotalItem={setTotalItem}
+              totalItem={totalItem}
             />
           )}
         </div>

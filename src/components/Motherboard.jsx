@@ -16,6 +16,13 @@ function Motherboard({
   allow,
   processorType,
   setRamType,
+  setReplace,
+  productPrice,
+  replace,
+  setTotalCost,
+  totalCost,
+  setTotalItem,
+  totalItem,
 }) {
   const [outputMotherboard, setOutputMotherboard] = useState();
 
@@ -67,6 +74,16 @@ function Motherboard({
                   <br />
                   <Button
                     onClick={() => {
+                      if (replace) {
+                        setTotalCost(totalCost - productPrice);
+                        setTotalItem(totalItem - 1);
+                        setProductName(val.VendorName + " " + val.Model);
+                        setProductPrice(val.Price);
+                        setOpen(!open);
+                        setAllow(!allow);
+                        setReplace(!replace);
+                        setRamType(val.MemoryType)
+                      }
                       setProductName(val.VendorName + " " + val.Model);
                       setProductPrice(val.Price);
                       setOpen(!open);
