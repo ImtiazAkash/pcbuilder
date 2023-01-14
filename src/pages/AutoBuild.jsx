@@ -3,7 +3,8 @@ import { useState } from "react";
 import { Table, Form, Button } from "react-bootstrap";
 import axios from "axios";
 import Classes from "../styles/AutoBuild.module.css";
-
+import JsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 
 function AutoBuild() {
   const [budget, setBudget] = useState();
@@ -83,7 +84,6 @@ function AutoBuild() {
         .catch((error) => {
           console.log(error);
         });
-
     }
   }
 
@@ -107,8 +107,11 @@ function AutoBuild() {
       </div>
       {/* component List  */}
       {builtPC && (
-        <div className={`${Classes.search_form} px-2`}>
-          <Table striped bordered hover>
+        <div
+          style={{ display: "flex", flexDirection: "column" }}
+          className={`${Classes.search_form} px-2`}
+        >
+          <Table striped bordered hover id="mypc" name="hya">
             <thead>
               <tr>
                 <th>Component</th>
@@ -190,6 +193,15 @@ function AutoBuild() {
               </tr>
             </tbody>
           </Table>
+
+          <Button onClick={() => {
+             const doc = new JsPDF();
+             autoTable(doc, {
+              theme: "grid",
+              html: "#mypc"
+             })
+             doc.save("AutoBuild.pdf")
+          }}>Download as PDF</Button>
         </div>
       )}
     </div>

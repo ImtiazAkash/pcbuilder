@@ -1,30 +1,30 @@
 import React from "react";
 import Classes from "../styles/NavigationBar.module.css"
 import { Link } from "react-router-dom";
+import { Navbar, Nav } from "react-bootstrap";
 
 function NavigationBar() {
   return (
-    <div className={Classes.header}>
-      <div className={Classes.logo}>
-        <Link to="/" style={{textDecoration: "none", color: "black"}}>
-        PC-BUILDER
+    <Navbar collapseOnSelect expand="lg" className={Classes.header}>
+      <Navbar.Brand style={{ fontWeight: "bold", padding: "5px" }}>
+        <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+          PC-BUILDER
         </Link>
-      </div>
-      <div className={Classes.menu}>
-        {/* <Link to="/" className={Classes.link}>
-          <div className={Classes.title}>About</div>
-          <div className={Classes.bar}></div>
-        </Link> */}
-        <Link to="/autobuild" className={Classes.link}>
-          <div className={Classes.title}>Auto-Build</div>
-          <div className={Classes.bar}></div>
-        </Link>
-        <Link to="/manualbuild" className={Classes.link}>
-          <div className={Classes.title}>Manual-Build</div>
-          <div className={Classes.bar}></div>
-        </Link>
-      </div>
-    </div>
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav>
+          <Link to="/autobuild" className={Classes.link}>
+            <div className={Classes.title}>Auto-Build</div>
+            <div className={Classes.bar}></div>
+          </Link>
+          <Link to="/manualbuild" className={Classes.link}>
+            <div className={Classes.title}>Manual-Build</div>
+            <div className={Classes.bar}></div>
+          </Link>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
   );
 }
 
