@@ -2,6 +2,7 @@ import React from "react";
 import Classes from "../styles/NavigationBar.module.css"
 import { Link } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
+import Account from "./Account";
 
 function NavigationBar() {
   return (
@@ -12,7 +13,10 @@ function NavigationBar() {
         </Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav">
+      <Navbar.Collapse
+        id="responsive-navbar-nav"
+        className="justify-content-end"
+      >
         <Nav>
           <Link to="/autobuild" className={Classes.link}>
             <div className={Classes.title}>Auto-Build</div>
@@ -22,6 +26,8 @@ function NavigationBar() {
             <div className={Classes.title}>Manual-Build</div>
             <div className={Classes.bar}></div>
           </Link>
+
+          <Account />
         </Nav>
       </Navbar.Collapse>
     </Navbar>

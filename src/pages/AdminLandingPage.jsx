@@ -1,0 +1,47 @@
+import React from 'react'
+import Classes from "../styles/AdminLandingPage.module.css"
+import ProcessorCard from '../components/cards/ProcessorCard';
+import { useState } from 'react';
+import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
+import MotherboardCard from '../components/cards/MotherboardCard';
+import RamCard from "../components/cards/RamCard"
+import SSDCard from "../components/cards/SSDCard"
+import HDDCard from "../components/cards/HDDCard"
+import GPUCard from "../components/cards/GPUCard"
+import MonitorCard from "../components/cards/MonitorCard"
+import PowerCard from '../components/cards/PowerCard';
+
+function AdminLandingPage() {
+  const options = ["Processor", "Motherboard", "Ram", "SSD", "HDD", "Graphics Card", "Power Supply", "Monitor"];
+  const [selectOption, setSelectOption] = useState(options[0])
+
+
+
+  console.log(selectOption);
+  return (
+    <div className={Classes.container}>
+      <div className={Classes.header}>
+        <Dropdown
+          options={options}
+          onChange={({value}) => setSelectOption(value)}
+          value={selectOption}
+          placeholder="Select an option"
+        />
+      </div>
+
+      <div className={Classes.body}>
+       {selectOption === "Processor" && <ProcessorCard />}
+       {selectOption === "Motherboard" && <MotherboardCard />}
+       {selectOption === "Ram" && <RamCard />}
+       {selectOption === "SSD" && <SSDCard />}
+       {selectOption === "HDD" && <HDDCard />}
+       {selectOption === "Graphics Card" && <GPUCard />}
+       {selectOption === "Power Supply" && <PowerCard />}
+       {selectOption === "Monitor" && <MonitorCard />}
+      </div>
+    </div>
+  );
+}
+
+export default AdminLandingPage
