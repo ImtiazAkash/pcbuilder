@@ -50,7 +50,7 @@ function MotherboardCard() {
                 <div className={Classes.action}>
                   <br />
                   <br />
-                  <Button>Add</Button>
+                  <Button>Manage</Button>
                 </div>
               </div>
             </div>

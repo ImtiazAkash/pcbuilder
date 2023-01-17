@@ -9,6 +9,7 @@ import { userLogin } from "../services/user";
 function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const user = localStorage.getItem("user")
 
   let navigate = useNavigate();
   async function login(e) {
@@ -28,13 +29,14 @@ function AdminLogin() {
             localStorage.setItem("token", res.data.access_token);
             localStorage.setItem("user", res.data.user.username);
             alert("Login Success!");
+            navigate("/admin-home")
+
           } else {
             alert("login failed");
           }
         })
         .catch((error) => console.log(error));
 
-        navigate("/admin-home")
     } catch (error) {
       console.log(error);
     }

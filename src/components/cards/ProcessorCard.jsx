@@ -51,7 +51,7 @@ function ProcessorCard() {
                   <br />
                   <Button
                   >
-                    Add
+                    Manage
                   </Button>
                 </div>
               </div>

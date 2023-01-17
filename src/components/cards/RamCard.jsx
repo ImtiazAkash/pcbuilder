@@ -54,7 +54,7 @@ function RamCard() {
                   <Button
                     
                   >
-                    Add
+                    Manage
                   </Button>
                 </div>
               </div>

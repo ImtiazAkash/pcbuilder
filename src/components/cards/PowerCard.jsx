@@ -51,7 +51,7 @@ function PowerCard(
                   <br />
                   <Button
                   >
-                    Add
+                    Manage
                   </Button>
                 </div>
               </div>

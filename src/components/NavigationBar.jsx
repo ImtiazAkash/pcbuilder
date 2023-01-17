@@ -5,6 +5,7 @@ import { Navbar, Nav } from "react-bootstrap";
 import Account from "./Account";
 
 function NavigationBar() {
+  
   return (
     <Navbar collapseOnSelect expand="lg" className={Classes.header}>
       <Navbar.Brand style={{ fontWeight: "bold", padding: "5px" }}>
@@ -26,8 +27,8 @@ function NavigationBar() {
             <div className={Classes.title}>Manual-Build</div>
             <div className={Classes.bar}></div>
           </Link>
-
-          <Account />
+          
+         <Account />
         </Nav>
       </Navbar.Collapse>
     </Navbar>
