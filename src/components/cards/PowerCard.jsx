@@ -5,11 +5,13 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { getPower } from "../../services/powerSupply";
 import powerlogo from "../../assests/icons/power.png"
+import { useNavigate } from "react-router-dom";
 
 function PowerCard(
   
 ) {
   const [outputPowerSupply, setOutputPowerSupply] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getPower()
@@ -47,9 +49,19 @@ function PowerCard(
                 </div>
 
                 <div className={Classes.action}>
-                  <br />
-                  <br />
                   <Button
+                    onClick={() => {
+                      navigate("/power_manage", {
+                        state: {
+                          Vendor: val.VendorName,
+                          Model: val.Model,
+                          PowerInW: val.PowerInW,
+                          Price: val.Price,
+                          id: val._id,
+                          logo: powerlogo,
+                        },
+                      });
+                    }}
                   >
                     Manage
                   </Button>

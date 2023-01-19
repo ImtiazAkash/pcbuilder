@@ -11,14 +11,16 @@ import HDDCard from "../components/cards/HDDCard"
 import GPUCard from "../components/cards/GPUCard"
 import MonitorCard from "../components/cards/MonitorCard"
 import PowerCard from '../components/cards/PowerCard';
+import { Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 function AdminLandingPage() {
   const options = ["Processor", "Motherboard", "Ram", "SSD", "HDD", "Graphics Card", "Power Supply", "Monitor"];
   const [selectOption, setSelectOption] = useState(options[0])
+  const navigate = useNavigate()
 
 
 
-  console.log(selectOption);
   return (
     <div className={Classes.container}>
       <div className={Classes.header}>
@@ -27,7 +29,11 @@ function AdminLandingPage() {
           onChange={({value}) => setSelectOption(value)}
           value={selectOption}
           placeholder="Select an option"
+          className={Classes.dropdown}
         />
+        <Button variant='success' className={Classes.button} onClick={()=> {
+          navigate("/add_product")
+        }}>Add Product</Button>
       </div>
 
       <div className={Classes.body}>

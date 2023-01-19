@@ -5,9 +5,11 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { getRam } from "../../services/ram";
 import ramlogo from "../../assests/icons/ram.png"
+import { useNavigate } from "react-router-dom";
 
 function RamCard() {
   const [outputRam, setOutputRam] = useState();
+  const navigate = useNavigate()
 
   useEffect(() => {
     getRam()
@@ -52,7 +54,20 @@ function RamCard() {
                   <br />
                   <br />
                   <Button
-                    
+                    onClick={()=> {
+                      navigate("/ram_manage", {
+                        state: {
+                          Vendor: val.VendorName,
+                          Model: val.Model,
+                          BusSpeed: val.BusSpeed,
+                          MemoryType: val.MemoryType,
+                          Capacity: val.Capacity,
+                          Price: val.Price,
+                          id: val._id,
+                          logo: ramlogo,
+                        }
+                      })
+                    }}
                   >
                     Manage
                   </Button>

@@ -5,7 +5,6 @@ import classes from "../styles/Account.module.css";
 function Account() {
     const token = localStorage.getItem("token");
     const user = localStorage.getItem("user");
-    console.log(user);
     const navigate = useNavigate()
 
   return (
@@ -16,16 +15,16 @@ function Account() {
           <span
             className="material-icons-outlined"
             title="Logout"
-            onClick={()=> {
-                localStorage.clear();
-                navigate("/admin")
+            onClick={() => {
+              localStorage.clear();
+              navigate("/admin");
             }}
           >
             {" "}
             logout{" "}
           </span>
         </>
-      ) }
+      )}
     </div>
   );
 }

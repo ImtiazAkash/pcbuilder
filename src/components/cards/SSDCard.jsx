@@ -1,12 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router-dom";
 import ssdlogo from "../../assests/icons/ssd.png";
 import { getStorage } from "../../services/storage";
 import Classes from "../../styles/Components.module.css";
 
 function SSDCard() {
   const [outputStorage, setOutputStorage] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getStorage()
@@ -53,7 +55,24 @@ function SSDCard() {
                 <div className={Classes.action}>
                   <br />
                   <br />
-                  <Button>Manage</Button>
+                  <Button
+                    onClick={() => {
+                      navigate("/storage_manage", {
+                        state: {
+                          Vendor: val.VendorName,
+                          Model: val.Model,
+                          Type: val.Type,
+                          Interface: val.Interface,
+                          Capacity: val.Capacity,
+                          Price: val.Price,
+                          id: val._id,
+                          logo: ssdlogo,
+                        },
+                      });
+                    }}
+                  >
+                    Manage
+                  </Button>
                 </div>
               </div>
             </div>

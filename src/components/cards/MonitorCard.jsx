@@ -5,9 +5,11 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { getMonitor } from "../../services/monitor";
 import monitorlogo from "../../assests/icons/monitor.png";
+import { useNavigate } from "react-router-dom";
 
 function MonitorCard() {
   const [outputMonitor, setOutputMonitor] = useState();
+  const navigate = useNavigate()
 
   useEffect(() => {
     getMonitor()
@@ -48,7 +50,19 @@ function MonitorCard() {
                 <div className={Classes.action}>
                   <br />
                   <br />
-                  <Button>Manage</Button>
+                  <Button onClick={()=> {
+                    navigate("/monitor_manage", {
+                      state: {
+                        Vendor: val.VendorName,
+                        Model: val.Model,
+                        Resolution: val.Resolution,
+                        DisplayInHz: val.DisplayInHz,
+                        Price: val.Price,
+                        id: val._id,
+                        logo: monitorlogo,
+                      }
+                    })
+                  }}>Manage</Button>
                 </div>
               </div>
             </div>

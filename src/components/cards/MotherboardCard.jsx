@@ -5,9 +5,11 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { getMotherboard } from "../../services/motherboard";
 import motherboardlogo from "../../assests/icons/motherboard.png";
+import { useNavigate } from "react-router-dom";
 
 function MotherboardCard() {
   const [outputMotherboard, setOutputMotherboard] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getMotherboard()
@@ -50,7 +52,21 @@ function MotherboardCard() {
                 <div className={Classes.action}>
                   <br />
                   <br />
-                  <Button>Manage</Button>
+                  <Button onClick={()=> {
+                      navigate("/motherboard_manage", {
+                        state: {
+                          Vendor: val.VendorName,
+                          Model: val.Model,
+                          Supports: val.SupportedCPU,
+                          MemorySlots: val.MemorySlots,
+                          MaxMemory: val.MaxMemory,
+                          MemoryType: val.MemoryType,
+                          Price: val.Price,
+                          id: val._id,
+                          logo: motherboardlogo,
+                        }
+                      })
+                  }}>Manage</Button>
                 </div>
               </div>
             </div>

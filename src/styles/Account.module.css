@@ -11,3 +11,14 @@
 .account>span:last-child {
     cursor: pointer;
 }
+
+.link {
+    display: inline-block;
+    margin: 10px 20px;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #0f0f0f;
+    font-weight: bold;
+    font-size: 1rem;
+}

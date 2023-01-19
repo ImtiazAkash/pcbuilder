@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import Button from "react-bootstrap/Button";
+import { useNavigate } from 'react-router-dom';
 import processorlogo from "../../assests/icons/processor.png"
 import { getProcessors } from '../../services/processor';
 import Classes from "../../styles/Components.module.css";
@@ -8,6 +9,8 @@ import Classes from "../../styles/Components.module.css";
 function ProcessorCard() {
 
     const [outputProcessor, setOutputProcessor] = useState();
+
+    const navigate = useNavigate();
 
     useEffect(() => {
       getProcessors()
@@ -49,8 +52,21 @@ function ProcessorCard() {
                 <div className={Classes.action}>
                   <br />
                   <br />
-                  <Button
-                  >
+                  <Button onClick={()=> {
+                    navigate("/processor_manage", {
+                      state: {
+                      Vendor: val.VendorName,
+                      Model: val.Model,
+                      Cores: val.Cores,
+                      Threads: val.Threads,
+                      Series: val.Series,
+                      VideoRam: val.VideoRam,
+                      Price: val.Price,
+                      logo: processorlogo,
+                      id: val._id
+                      }
+                    })
+                  }}>
                     Manage
                   </Button>
                 </div>

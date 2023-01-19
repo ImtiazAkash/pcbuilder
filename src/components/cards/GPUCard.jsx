@@ -1,12 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
-import processorlogo from "../../assests/icons/processor.png";
+import { useNavigate } from "react-router-dom";
+import gpulogo from "../../assests/icons/gpu.png";
 import { getGPU } from "../../services/gpu";
 import Classes from "../../styles/Components.module.css";
 
 function GPUCard() {
    const [outputGPU, setOutputGPU] = useState();
+   const navigate = useNavigate();
 
    useEffect(() => {
      getGPU()
@@ -25,7 +27,7 @@ function GPUCard() {
             <div className={Classes.container}>
               <div className={Classes.productContainer}>
                 <div className={Classes.icon}>
-                  <img src={processorlogo} alt="product logo" />
+                  <img src={gpulogo} alt="product logo" />
                 </div>
 
                 <div className={Classes.productInfoBlock}>
@@ -47,7 +49,20 @@ function GPUCard() {
                 <div className={Classes.action}>
                   <br />
                   <br />
-                  <Button>Manage</Button>
+                  <Button onClick={()=> {
+                    navigate("/gpu_manage", {
+                      state: {
+                        Vendor: val.VendorName,
+                        Model: val.Model,
+                        Type: val.Type,
+                        Capacity: val.Capacity,
+                        Resolution: val.Resolution,
+                        Price: val.Price,
+                        id: val._id,
+                        logo: gpulogo,
+                      }
+                    })
+                  }}>Manage</Button>
                 </div>
               </div>
             </div>
