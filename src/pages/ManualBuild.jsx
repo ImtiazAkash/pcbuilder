@@ -15,7 +15,7 @@ import powersupplylogo from "../assests/icons/power.png";
 import ChoosePowerSupply from "../components/ChoosePowerSupply";
 import ChooseMonitor from "../components/ChooseMonitor";
 import monitorlogo from "../assests/icons/monitor.png";
-import { Button } from "react-bootstrap";
+import { Container,Button } from "react-bootstrap";
 import JsPDF from "jspdf";
 
 
