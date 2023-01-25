@@ -29,6 +29,11 @@ function AddMonitor() {
         .then((res) => {
           console.log(res.data);
           alert("Monitor Added");
+          setVendor("");
+          setModel("");
+          setDisplayInHz("");
+          setResolution("");
+          setPrice("");
         })
         .catch((error) => {
           console.log(error);

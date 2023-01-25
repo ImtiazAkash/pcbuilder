@@ -3,7 +3,6 @@ import Classes from "../styles/AdminLandingPage.module.css"
 import ProcessorCard from '../components/cards/ProcessorCard';
 import { useState } from 'react';
 import Dropdown from "react-dropdown";
-import "react-dropdown/style.css";
 import MotherboardCard from '../components/cards/MotherboardCard';
 import RamCard from "../components/cards/RamCard"
 import SSDCard from "../components/cards/SSDCard"
