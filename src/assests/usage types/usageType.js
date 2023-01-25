@@ -110,9 +110,9 @@ function developer(budget, setBuiltPC, setLoading) {
   processor = 0.3 * budget;
   motherboard = 0.13 * budget;
   ram = 0.12 * budget;
-  storage = 0.15 * budget;
+  storage = 0.13 * budget;
   powerSupply = 0.06 * budget;
-  monitor = 0.24 * budget;
+  monitor = 0.26 * budget;
 
   axios
     .get(
@@ -143,10 +143,10 @@ function developerHigh(budget, setBuiltPC, setLoading) {
 
   processor = 0.26 * budget;
   motherboard = 0.1 * budget;
-  ram = 0.09 * budget;
-  storage = 0.09 * budget;
+  ram = 0.08 * budget;
+  storage = 0.08 * budget;
   powerSupply = 0.04 * budget;
-  monitor = 0.16 * budget;
+  monitor = 0.18 * budget;
 
   axios
     .get(
